@@ -1,0 +1,28 @@
+.blanca,
+.negra {
+  border: solid gray 2px;
+}
+
+.blanca {
+  background-color: white;
+  color: black;
+}
+
+.negra {
+  background-color: black;
+  color: white;
+}
+
+table {
+  padding: 0px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: auto;
+}
+
+td {
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  text-align: center;
+}
