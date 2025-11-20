@@ -1,0 +1,106 @@
+
+<?php
+
+// Fuerza inicial del caballero
+$fuerzaCaballero = 10;
+
+// Tamaño del campo
+$filas = 7;
+$columnas = 7;
+
+echo "<h2>Entrenamiento del Caballero</h2>";
+
+for ($fila = 1; $fila <= $filas; $fila++) {
+    for ($col = 1; $col <= $columnas; $col++) {
+
+        echo "<strong>Casilla [$fila , $col]: </strong>";
+
+        // 50% de probabilidad de encontrar compañero
+        $hayCompanero = rand(0, 1);
+
+        if ($hayCompanero) {
+
+            // Fuerza del compañero (1 a 15)
+            $fuerzaCompanero = rand(1, 15);
+
+            echo "Compañero encontrado (Fuerza: $fuerzaCompanero). ";
+
+            // Resultado de la pelea
+            if ($fuerzaCaballero > $fuerzaCompanero) {
+                echo "<span style='color:green'>¡Victoria!</span> ";
+            } else {
+                echo "<span style='color:red'>Derrota...</span> ";
+            }
+
+            // El caballero se cansa y pierde 1 punto de fuerza
+            $fuerzaCaballero--;
+
+            echo " → Fuerza del caballero tras la pelea: $fuerzaCaballero.<br>";
+
+        } else {
+            // No hay pelea → el caballero descansa y gana 1 punto
+            $fuerzaCaballero++;
+            echo "No hay compañero. El caballero descansa → Fuerza aumentada a $fuerzaCaballero.<br>";
+        }
+    }
+}
+
+echo "<br><strong>Entrenamiento finalizado.</strong>";
+
+?>
+
+<?php
+
+$vidaCaballero = 100;
+$vidaDragon = 200;
+
+echo "<h2>Combate: Caballero vs. Dragón</h2>";
+
+$ronda = 1;
+
+while ($vidaCaballero > 0 && $vidaDragon > 0) {
+
+    echo "<h3>--- Ronda $ronda ---</h3>";
+
+    // Ataque del Caballero (10 a 50)
+    $ataqueCaballero = rand(10, 50);
+    $vidaDragon -= $ataqueCaballero;
+
+    if ($vidaDragon < 0) $vidaDragon = 0;
+
+    echo "El Caballero ataca y causa <strong>$ataqueCaballero</strong> puntos de daño.<br>";
+    echo "Vida restante del Dragón: <strong>$vidaDragon</strong><br>";
+
+    // Si el dragón muere, NO puede atacar
+    if ($vidaDragon <= 0) {
+        echo "<h3>¡El Dragón ha caído! 🐉❌</h3>";
+        break;
+    }
+
+    // Ataque del Dragón (15 a 20)
+    $ataqueDragon = rand(15, 20);
+    $vidaCaballero -= $ataqueDragon;
+
+    if ($vidaCaballero < 0) $vidaCaballero = 0;
+
+    echo "El Dragón contraataca y causa <strong>$ataqueDragon</strong> puntos de daño.<br>";
+    echo "Vida restante del Caballero: <strong>$vidaCaballero</strong><br>";
+
+    if ($vidaCaballero <= 0) {
+        echo "<h3>¡El Caballero ha caído! ⚔❌</h3>";
+        break;
+    }
+
+    $ronda++;
+}
+
+echo "<hr>";
+
+if ($vidaCaballero > 0) {
+    echo "<h2>🏆 ¡El Caballero es el vencedor!</h2>";
+} else {
+    echo "<h2>🔥 El Dragón es el vencedor...</h2>";
+}
+
+?>
+
